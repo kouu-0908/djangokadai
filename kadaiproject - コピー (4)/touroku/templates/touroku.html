@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}記事登録ページ{% endblock %}
+ 
+    {%block contents%}
+ 
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-2">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>カテゴリ</th>
+                            <td>{{ form.category }}<td>
+                            <a>カテゴリの追加は</a><a href="{% url 'touroku:kategorituika'%}">こちら</a><a>！</a>
+                        </tr>
+                        <tr>
+                            <th>タイトル</th>
+                            <td>{{ form.title }}<td>
+                        </tr>
+                        <tr>
+                            <th>サブタイトル</th>
+                            <td>{{ form.subtitle }}<td>
+                            </td>
+                        <tr>
+                        <tr>
+                            <th>本文</th>
+                            <td>{{ form.comment }}<td>
+                        </tr>
+                            <th>画像</th>
+                            <td>{{ form.image1 }}<td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <button type="submit">登録</button>
+                </from>
+            </dv>
+        </dv>
+    </dv>
+    {% endblock %}

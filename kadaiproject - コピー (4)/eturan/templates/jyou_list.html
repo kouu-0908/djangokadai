@@ -1,0 +1,26 @@
+<!--選択された記事の表示場所-->
+<div class="row g-5">
+  <div class="col-md-8">
+    <h1>注目の投稿</h1>
+    <hr>
+    {% for record in object_list reversed %}
+
+    <article class="blog-post">
+      <h2 class="display-5 link-body-emphasis mb-1">{{record.title}}</h2>
+      <p class="blog-post-meta">{{record.post_at}} by <a href="#">{{record.user.username}}</a></p>
+
+      <p>{{record.subtitle}}</p>
+      <p><img src="{{record.image1.url}}"></img></p>
+      <button type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                      onclick="location.href='{% url 'eturan:detail' record.pk %}'">
+                      View</button>
+      <button type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                      onclick="location.href='{% url 'eturan:jyouhou_cat' category=record.category.id %}'">
+                      {{record.category.title}}</button>
+      <hr>
+    </article>
+    {% endfor %}
+  </div>
+</div>

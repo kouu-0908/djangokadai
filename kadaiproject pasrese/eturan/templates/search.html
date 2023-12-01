@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title%}Search{% endblock%}
+
+{% block header %}
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+    <div class="col-lg-6 px-0">
+      <h1 class="display-4 fst-italic">検索ページ</h1>
+      <p class="lead my-3">見たい投稿のタイトルに含まれるキーワードを入力すればその記事を探し出してあげるよ！</p>
+      <form class="w-50" method="GET" action="{% url 'eturan:kouryaku_search' %}">
+        <p><input class="form-control" type="text" name="title" value="{{ title }}" placeholder="キーワード入力"></p>
+        <p><input class="btn btn-secondary" type="submit" value="検索"></p>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block contents %}
+<div class="container mt-3">
+
+    {% for object in object_list %}
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">タイトル: <a href="{% url 'eturan:detail' object.id %}">{{object.title}}</a></h5>
+                <p class="card-text">{{object.subtitle}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% include "pagination.html" %}
+{% endblock %}

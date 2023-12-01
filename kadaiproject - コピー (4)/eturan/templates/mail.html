@@ -1,0 +1,69 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}メールフォーム{% endblock %}
+
+
+  
+  {% block header %}
+  <main class="container">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+      <div class="col-lg-6 px-0">
+        <h1 class="display-4 fst-italic">メールフォーム</h1>
+        <p class="lead my-3">ここはメールを送れるページです。当サイトで不明な点や聞きたいことがありましたら以下のフォームに記入してメッセージを送信してください！できるだけ早くご連絡します！！</p>
+      </div>
+    </div>
+  {% endblock %}
+
+  
+  {% block  contents%}
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+        
+          <!-- フォームの送信が成功したときのメッセージを表示するためのコード -->
+          {% if messages %}
+          
+          <ul class="list-unstyled" style="list-style: none;">
+            {% for message in messages %}
+            <li {%if message.tags %} class="{{ message.tags }}" {% endif %}>
+              <!-- messageに格納されているメッセージを出力 -->
+              {{ message }}
+            </li>
+           {% endfor %}
+          </ul>
+          {% endif %}
+  
+          <div class="my-5">
+
+            <form method="post" >
+              {% csrf_token %}
+
+              {% for field in form %}
+                <div class="form-floating">
+                  <div class="form-group floating-label-form-group controls">
+                    {{ field.label_tag}}
+                    {{ field }}
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+              {% endfor %}
+        
+              <br>
+              <!-- 送信用のボタン -->
+              <button type="submit"
+                      class="btn btn-primary"
+                      id="sendMessageButton">送信</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr>
+  </main>
+  {% endblock %}
+

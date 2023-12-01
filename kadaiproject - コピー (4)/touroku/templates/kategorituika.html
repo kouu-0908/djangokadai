@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}記事登録ページ{% endblock %}
+ 
+    {%block contents%}
+ 
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-2">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>追加するカテゴリ</th>
+                            <td>{{ form.title }}<td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <button type="submit">登録</button>
+                </from>
+            </dv>
+        </dv>
+    </dv>
+    {% endblock %}
+ 
